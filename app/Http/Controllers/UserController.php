@@ -78,26 +78,33 @@ class UserController extends Controller
     public function update($id, Request $request)
     {
         $user = Auth::user();
-        $date = date("Y-m-d", strtotime($user->updated_at));
-        $day_2 = date('Y-m-d'); //current date
-        $remainDate = (strtotime($day_2) - strtotime($date)) / (60 * 60 * 24);
-        if ($remainDate > 60) {
-            if ($request->img_path) {
-                $fileName = $request->img_path->getClientOriginalName();
-                $this->user->find($id)->update([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                    'img_path' => Storage::url($request->file('img_path')->storeAs('public/user', $fileName)),
-                ]);
+        if ($request->password == null) {
+            $date = date("Y-m-d", strtotime($user->updated_at));
+            $day_2 = date('Y-m-d'); //current date
+            $remainDate = (strtotime($day_2) - strtotime($date)) / (60 * 60 * 24);
+            if ($remainDate > 60) {
+                if ($request->img_path) {
+                    $fileName = $request->img_path->getClientOriginalName();
+                    $this->user->find($id)->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'img_path' => Storage::url($request->file('img_path')->storeAs('public/user', $fileName)),
+                    ]);
+                } else {
+                    $this->user->find($id)->update([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                    ]);
+                }
+                return redirect()->action('App\Http\Controllers\UserController@index')->with(['flag' => 'danger', 'update' => 'thành công']);
             } else {
-                $this->user->find($id)->update([
-                    'name' => $request->name,
-                    'email' => $request->email,
-                ]);
+                return redirect()->back()->with(['flag' => 'danger', 'mess' => 'Chưa đủ 60 ngày để đổi tên']);
             }
-            return redirect()->action('App\Http\Controllers\UserController@index');
-        } else {
-            return redirect()->back()->with(['flag' => 'danger', 'mess' => 'Chưa đủ 60 ngày để đổi tên']);
+        }else{
+            $this->user->find($id)->update([
+                'password'=>  Hash::make($request->password),
+            ]);
+            return redirect()->back()->with(['flag' => 'danger', 'update' => 'thành công']);
         }
     }
 

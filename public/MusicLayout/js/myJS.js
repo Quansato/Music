@@ -216,7 +216,6 @@ function disableInput() {
         $('#repass').removeAttr('disabled');
         $('#name').attr('disabled', 'disabled');
         $('#email').attr('disabled', 'disabled');
-        $('.btn_update').prop("disabled", true);
         $(".btn_repass").html('Huỷ');
     } else {
         $('#name').removeAttr('disabled');
@@ -224,7 +223,6 @@ function disableInput() {
         $('#password').attr('disabled', 'disabled');
         $('#repass').attr('disabled', 'disabled');
         $(".btn_repass").html('Đổi mật khẩu');
-        $('.btn_update').prop("disabled", false);
     }
 }
 
@@ -242,12 +240,13 @@ $(function () {
     $('.jp-next').on('click', setFlag)
     $('.clear_all').on('click', clearList)
     $('.btn_repass').on('click', disableInput)
-    $('#password, #repass').on('keyup', function () {
+    $('#repass').on('keyup', function () {
         if ($('#password').val() != $('#repass').val()) {
             this.setCustomValidity("Mật khẩu không trùng khớp");
             this.reportValidity();
         } else {
-
+            this.setCustomValidity("");
+            console.log('ok');
         }
     });
 });

@@ -70,9 +70,9 @@
         $('#err_login').modal('show');
         @elseif(Session::has('mess'))
         $('#err_update').modal('show');
+        @elseif(Session::has('update'))
+        $('#success_update').modal('show');
         @endif
-
-
     </script>
     <!-- Load Facebook SDK for JavaScript -->
     <!-- <div id="fb-root"></div>

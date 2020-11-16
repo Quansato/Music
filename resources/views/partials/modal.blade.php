@@ -214,6 +214,22 @@
     </div>
 </div>
 
+<div class="ms_clear_modal">
+    <div id="success_update" class="modal  centered-modal" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal">
+                    <i class="fa_icon form_close"></i>
+                </button>
+                <div class="modal-body">
+                    <h1>Cập nhật thành công</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <div class="ms_clear_modal">

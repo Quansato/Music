@@ -7,6 +7,7 @@
 
 
 @section('content')
+<div class="ms_content_wrapper padder_top80">
 <div class="ms_profile_wrapper">
     <h1>Chỉnh sửa thông tin cá nhân</h1>
     <form action="{{route('user.update',['id'=>$user->id])}}" method="post" enctype="multipart/form-data">
@@ -50,5 +51,6 @@
             </div>
         </div>
     </form>
+</div>
 </div>
 @endsection
