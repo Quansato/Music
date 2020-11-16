@@ -39,12 +39,12 @@
                                     @endif
                                 </ul>
                                 <div class="ms_play_icon">
-                                    <img src="{{asset('MusicLayout/images/svg/play.svg')}}" alt="">
+                                    <img src="{{asset('MusicLayout/images/svg/play.svg')}}" alt="" data-url="{{route('song.update',['id'=>$song->id])}}" class="song_play set" onClick="get_only_song({{$song->id}})">
                                 </div>
                             </div>
                         </div>
                         <div class="ms_rcnt_box_text">
-                            <h3><a href="#">{{$song->name}}</a></h3>
+                            <h3><a href="javascript:void(0)" data-url="{{route('song.update',['id'=>$song->id])}}" class="song_play set" onClick="get_only_song({{$song->id}})">{{$song->name}}</a></h3>
                             <p></p>
                         </div>
                     </div>

@@ -37,7 +37,7 @@
             </ul>
             @foreach($album->songs as $key=> $song)
             <ul>
-                <li class="stt"><a href="javascript:void(0)" data-url="{{route('song.update',['id'=>$song->id])}}" class="song_play" onClick="get_detail_song({{$song->id}})"><span class="play_no">{{$key+1}}</span><span class="play_hover"></span></a></li>
+                <li class="stt"><a href="javascript:void(0)" data-url="{{route('song.update',['id'=>$song->id])}}" class="song_play set" onClick="get_only_song({{$song->id}})"><span class="play_no">{{$key+1}}</span><span class="play_hover"></span></a></li>
                 <li><a href="#">{{$song->name}}</a></li>
                 <li class="text-center name">
                     @foreach($song->artists as $art)
