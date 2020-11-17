@@ -12,6 +12,7 @@ use App\Models\Album;
 use App\Models\Favourite;
 use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SongController extends Controller
 {
@@ -32,7 +33,9 @@ class SongController extends Controller
     public function index()
     {
         $songs = $this->song->paginate(10);
-        $songT1 = $this->song->orderBy('number_listen', 'desc')->take(2)->get();
+        $songT1 = DB::table('songs')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_listen','desc')->take(2)->get();
         return view('song.index', compact('songs','songT1'));
     }
 
@@ -72,7 +75,9 @@ class SongController extends Controller
     public function showList()
     {
         $list = session()->get('list');
-        $songT1 = $this->song->orderBy('number_listen', 'desc')->take(2)->get();
+        $songT1 = DB::table('songs')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_listen','desc')->take(2)->get();
         return view('song.favourite', compact('list','songT1'));
     }
 

@@ -72,6 +72,8 @@
         $('#err_update').modal('show');
         @elseif(Session::has('update'))
         $('#success_update').modal('show');
+        @elseif(Session::has('errupdate'))
+        $('#err_update').modal('show');
         @endif
     </script>
     <!-- Load Facebook SDK for JavaScript -->

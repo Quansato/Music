@@ -6,10 +6,10 @@
 	<div class="ms_sidemenu_inner">
 		<div class="ms_logo_inner">
 			<div class="ms_logo">
-				<a href="index-2.html"><img src="{{asset('MusicLayout/images/logo.png')}}" alt="" class="img-fluid" /></a>
+				<a href="{{ route('home.index') }}"><img src="{{asset('MusicLayout/images/logo.png')}}" alt="" class="img-fluid" / ></a>
 			</div>
 			<div class="ms_logo_open">
-				<a href="index-2.html"><img src="{{asset('MusicLayout/images/open_logo.png')}}" alt="" class="img-fluid" /></a>
+				<a href="{{ route('home.index') }}"><img src="{{asset('MusicLayout/images/open_logo.png')}}" alt="" class="img-fluid" /></a>
 			</div>
 		</div>
 		<div class="ms_nav_wrapper">

@@ -28,25 +28,15 @@
                 </div>
                 <div class="form-group">
                     <label>Mật khẩu</label>
-                    <input type="password" id="password" value="{{$user->password}}" name="password" class="form-control" required disabled>
-                    @if($errors->has('password'))
-                    <div class="alert alert-danger">
-                        {{$errors->first('password')}}
-                    </div>
-                    @endif
+                    <input type="password" id="password" placeholder="******" name="password" class="form-control" required >
                 </div>
                 <div class="form-group">
                     <label>Xác nhận mật khẩu</label>
-                    <input type="password" id="repass" placeholder="******" name="comfirmpass" class="form-control" required disabled>
-                    @if($errors->has('confirmpass'))
-                    <div class="alert alert-danger">
-                        {{$errors->first('confirmpass')}}
-                    </div>
-                    @endif
+                    <input type="password" id="repass" placeholder="******" name="comfirmpass" class="form-control" required >
                 </div>
                 <div class="pro-form-btn text-center marger_top15">
                     <button class="ms_btn btn_update" data-url="{{route('user.update',['id'=>$user->id])}}" style="border:none">Cập nhật</button>
-                    <a href="javascript:void(0)" class="ms_btn btn_repass">Đổi mật khẩu</a>
+                    <a href="javascript:void(0)" class="ms_btn btn_repass">Huỷ</a>
                 </div>
             </div>
         </div>

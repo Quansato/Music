@@ -207,24 +207,24 @@ function clearList() {
     location.reload();
 }
 
-var fl = 0;
+// var fl = 0;
 
-function disableInput() {
-    fl = fl + 1;
-    if (fl % 2 !== 0) {
-        $('#password').removeAttr('disabled');
-        $('#repass').removeAttr('disabled');
-        $('#name').attr('disabled', 'disabled');
-        $('#email').attr('disabled', 'disabled');
-        $(".btn_repass").html('Huỷ');
-    } else {
-        $('#name').removeAttr('disabled');
-        $('#email').removeAttr('disabled');
-        $('#password').attr('disabled', 'disabled');
-        $('#repass').attr('disabled', 'disabled');
-        $(".btn_repass").html('Đổi mật khẩu');
-    }
-}
+// function disableInput() {
+//     fl = fl + 1;
+//     if (fl % 2 !== 0) {
+//         $('#password').removeAttr('disabled');
+//         $('#repass').removeAttr('disabled');
+//         $('#name').attr('disabled', 'disabled');
+//         $('#email').attr('disabled', 'disabled');
+//         $(".btn_repass").html('Huỷ');
+//     } else {
+//         $('#name').removeAttr('disabled');
+//         $('#email').removeAttr('disabled');
+//         $('#password').attr('disabled', 'disabled');
+//         $('#repass').attr('disabled', 'disabled');
+//         $(".btn_repass").html('Đổi mật khẩu');
+//     }
+// }
 
 
 
@@ -239,7 +239,6 @@ $(function () {
     $('.art_play').on('click', get_detail_artist)
     $('.jp-next').on('click', setFlag)
     $('.clear_all').on('click', clearList)
-    $('.btn_repass').on('click', disableInput)
     $('#repass').on('keyup', function () {
         if ($('#password').val() != $('#repass').val()) {
             this.setCustomValidity("Mật khẩu không trùng khớp");

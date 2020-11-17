@@ -168,12 +168,6 @@ Route::prefix('song')->group(function () {
         'uses' => 'App\Http\Controllers\SongController@updateD'
     ]);
 
-    Route::get('/showcmt/{id}', [
-        'as' => 'song.showcmt',
-        'uses' => 'App\Http\Controllers\SongController@showCmt'
-    ]);
-
-    
 });
 
 Route::group(['middleware' => ['web']], function () {

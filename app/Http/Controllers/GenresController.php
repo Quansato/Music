@@ -7,6 +7,7 @@ use App\Models\Song;
 use App\Models\Artist;
 use App\Models\SongArtist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class GenresController extends Controller
 {
@@ -22,14 +23,18 @@ class GenresController extends Controller
 
     public function index(){
         $genres = $this->genres->get();
-        $songT1 = $this->song->orderBy('number_listen', 'desc')->take(2)->get();
+        $songT1 = DB::table('songs')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_listen','desc')->take(2)->get();
         return view('genres.index',compact('genres','songT1'));
     }
 
     public function detailGenres($id){
         $genres = $this->genres->find($id);
         $genresAll = $this->genres->get();
-        $songT1 = $this->song->orderBy('number_listen', 'desc')->take(2)->get();
+        $songT1 = DB::table('songs')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_listen','desc')->take(2)->get();
         return view('genres.detailGenres', compact('genres','genresAll','songT1'));
     }
 

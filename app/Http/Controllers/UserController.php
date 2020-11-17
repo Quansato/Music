@@ -6,6 +6,7 @@ use App\Models\Song;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Socialite\Facades\Socialite;
@@ -71,14 +72,16 @@ class UserController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $songT1 = $this->song->orderBy('number_listen', 'desc')->take(2)->get();
+        $songT1 = DB::table('songs')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_listen','desc')->take(2)->get();
         return view('home.user', compact('user', 'songT1'));
     }
 
     public function update($id, Request $request)
     {
         $user = Auth::user();
-        if ($request->password == null) {
+        if (Hash::check($request->password,$user->password)) {
             $date = date("Y-m-d", strtotime($user->updated_at));
             $day_2 = date('Y-m-d'); //current date
             $remainDate = (strtotime($day_2) - strtotime($date)) / (60 * 60 * 24);
@@ -101,10 +104,7 @@ class UserController extends Controller
                 return redirect()->back()->with(['flag' => 'danger', 'mess' => 'Chưa đủ 60 ngày để đổi tên']);
             }
         }else{
-            $this->user->find($id)->update([
-                'password'=>  Hash::make($request->password),
-            ]);
-            return redirect()->back()->with(['flag' => 'danger', 'update' => 'thành công']);
+            return redirect()->back()->with(['flag' => 'danger', 'errupdate' => 'thành công']);
         }
     }
 

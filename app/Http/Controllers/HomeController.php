@@ -10,6 +10,7 @@ use App\Models\SongAlbum;
 use App\Models\Album;
 use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -32,15 +33,19 @@ class HomeController extends Controller
         $artists = $this->artist->orderBy('number_visit', 'desc')->take(6)->get();
         $genres = $this->genres->get();
         $albums = $this->album->orderBy('number_visit', 'desc')->take(5)->get();
-        $songT1 = $this->song->orderBy('number_listen', 'desc')->take(2)->get();
+        $songT1 = DB::table('songs')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_listen','desc')->take(2)->get();
         $albumTop = $this->album->orderBy('number_visit', 'desc')->take(5)->get();
-        return view('home', compact('songs', 'artists', 'songRelase', 'genres', 'albums', 'songT1', 'albumTop'));
+        return view('home', compact('songs', 'artists', 'songRelase', 'genres','songT1', 'albums', 'albumTop'));
     }
 
     public function getSearch(Request $request)
     {
         $song = $this->song->where('name', 'like', '%' . $request->key . '%')->get();
-        $songT1 = $this->song->orderBy('number_listen', 'desc')->take(2)->get();
+        $songT1 = DB::table('songs')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_listen','desc')->take(2)->get();
         $artist = $this->artist->where('name', 'like', '%' . $request->key . '%')->get();
         return view('home.search', compact('song', 'songT1', 'artist'));
     }
@@ -69,8 +74,10 @@ class HomeController extends Controller
 
     public function song()
     {
-        $songT1 = $this->song->orderBy('number_listen', 'desc')->take(2)->get();
-        return view('partials.header', compact('songT1'));
+        $songT1 = DB::table('songs')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_listen','desc')->take(2)->get();
+        return view('layouts.main', compact('songT1'));
     }
 
     public function albumFavourite()
@@ -103,3 +110,6 @@ class HomeController extends Controller
         ], 200);
     }
 }
+
+// select * from songs where datediff((select curdate()),(SELECT created_at FROM php_music.songs where id=14))>30 
+// order by number_listen desc;
