@@ -24,14 +24,13 @@ class UserController extends Controller
     public function signup(Request $request)
     {
         $this->validate($request, [
-            'email' => 'required|email|unique:users,email',
+            'email' => 'required|email',
             'password' => 'required|min:6',
             'name' => 'required',
             'confirmpass' => 'required|same:password'
         ], [
             'email.required' => 'Vui lòng nhập email',
             'email.email' => 'Không đúng định dạng',
-            'email.unique' => 'Email đã tồn tại',
             'name.required' => 'Vui lòng nhập tên',
             'password.required' => 'Vui lòng nhập mật khẩu',
             'confirmpass.required' => 'Vui lòng nhập lại mật khẩu',
@@ -42,8 +41,10 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
         $user->active = 0;
+        $user->img_path = '/storage/user/pic1 (12).jpg';
+        $user->updated_at = NULL;
         $user->save();
-        return with('success', 'Tạo tài khoản thành công');
+        return redirect()->back()->with('success', 'Tạo tài khoản thành công');
     }
 
     public function signin(Request $request)
@@ -81,7 +82,7 @@ class UserController extends Controller
     public function update($id, Request $request)
     {
         $user = Auth::user();
-        if (Hash::check($request->password,$user->password)) {
+        if (Hash::check($request->password,$user->password)==true) {
             $date = date("Y-m-d", strtotime($user->updated_at));
             $day_2 = date('Y-m-d'); //current date
             $remainDate = (strtotime($day_2) - strtotime($date)) / (60 * 60 * 24);
@@ -104,7 +105,7 @@ class UserController extends Controller
                 return redirect()->back()->with(['flag' => 'danger', 'mess' => 'Chưa đủ 60 ngày để đổi tên']);
             }
         }else{
-            return redirect()->back()->with(['flag' => 'danger', 'errupdate' => 'thành công']);
+            return redirect()->back()->with(['flag' => 'danger', 'errupdate' => 'thaat bai']);
         }
     }
 

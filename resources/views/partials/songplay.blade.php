@@ -1,5 +1,5 @@
 <!-- close_player -->
-<div class="ms_player_wrapper ">
+<div class="ms_player_wrapper close_player">
     <div class="ms_player_close">
         <i class="fa fa-angle-up" aria-hidden="true"></i>
     </div>

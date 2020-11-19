@@ -424,6 +424,9 @@ Assigned to: Theme Forest
         setTimeout(function() {
             $('body').addClass('loaded');
             setAudio();
+            if(sessionStorage.length){
+                $('.ms_player_wrapper').removeClass('close_player')
+            }
         }, 500);
         // Li Lenght
         if ($('.jp-playlist ul li').length > 3) {

@@ -6727,3 +6727,26 @@ height: 500px;
 .btn_update{
 	cursor: pointer;
 }
+.login{
+	background-color: transparent;
+    height: 40px;
+    border: 1px solid #fff;
+    margin-left: 0px;
+    padding: 0px 31px;
+    line-height: 40px;
+    width: auto;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.login:hover{
+	background-color: #ffffff;
+	color: #22bed7;
+}
+
+.zalo-chat-widget{
+	display: none;
+}
+.support{
+	display: block !important;
+}

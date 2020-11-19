@@ -207,25 +207,31 @@ function clearList() {
     location.reload();
 }
 
-// var fl = 0;
+function setDp(){
+    $('.zalo-chat-widget').addClass('support')
+}
+function addAlbum(e){
+    e.preventDefault();
+    let url = $(this).data('url');
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function (data) {
+            if (data.code == 200) {
+                $('#success_modal').modal('show');
+            }
+            location.reload();
+        },
+        error: function () {
 
-// function disableInput() {
-//     fl = fl + 1;
-//     if (fl % 2 !== 0) {
-//         $('#password').removeAttr('disabled');
-//         $('#repass').removeAttr('disabled');
-//         $('#name').attr('disabled', 'disabled');
-//         $('#email').attr('disabled', 'disabled');
-//         $(".btn_repass").html('Huỷ');
-//     } else {
-//         $('#name').removeAttr('disabled');
-//         $('#email').removeAttr('disabled');
-//         $('#password').attr('disabled', 'disabled');
-//         $('#repass').attr('disabled', 'disabled');
-//         $(".btn_repass").html('Đổi mật khẩu');
-//     }
-// }
+        }
 
+    })
+}
+
+function showBar(){
+    $('.ms_player_wrapper').removeClass('close_player')
+}
 
 
 $(function () {
@@ -248,6 +254,9 @@ $(function () {
             console.log('ok');
         }
     });
+    $('.support').on('click',setDp)
+    $('.add_album_fr').on('click',addAlbum)
+    $('.song_play,.play_now,.art_play').on('click',showBar)
 });
 
 ///getttt audio

@@ -36,7 +36,9 @@ class HomeController extends Controller
         $songT1 = DB::table('songs')
         ->whereRaw('datediff((select curdate()),created_at)<30')
         ->orderBy('number_listen','desc')->take(2)->get();
-        $albumTop = $this->album->orderBy('number_visit', 'desc')->take(5)->get();
+        $albumTop = DB::table('albums')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_visit','desc')->take(5)->get();
         return view('home', compact('songs', 'artists', 'songRelase', 'genres','songT1', 'albums', 'albumTop'));
     }
 
@@ -62,11 +64,17 @@ class HomeController extends Controller
     public function albumTop()
     {
         $arr = array();
-        $albumTop = $this->album->orderBy('number_visit', 'desc')->take(5)->get();
-        foreach ($albumTop as $album) {
-            foreach ($album->songs as $song) {
-                $art = $song->artists;
-                array_push($arr, json_decode($song, true));
+        $albumTop = DB::table('albums')
+        ->whereRaw('datediff((select curdate()),created_at)<30')
+        ->orderBy('number_visit','desc')->take(5)->get();
+        foreach($albumTop as $album){
+            $songalbum=$this->songAlbum->where('id_album',$album->id)->get();
+            foreach($songalbum as $sa){
+                $song=$this->song->where('id',$sa->id_song)->get();
+                foreach($song as $song){
+                    $art = $song->artists;
+                    array_push($arr, json_decode($song, true));
+                }
             }
         }
         print_r(json_encode($arr));
@@ -88,10 +96,6 @@ class HomeController extends Controller
             foreach ($album->songs as $song) {
                 $art = $song->artists;
                 if (isset($list[$song->id])) {
-                    return response()->json([
-                        'code' => 201,
-                        'message' => 'error'
-                    ], 200);
                 } else {
                     $list[$song->id] = [
                         'id' => $song->id,
@@ -111,5 +115,3 @@ class HomeController extends Controller
     }
 }
 
-// select * from songs where datediff((select curdate()),(SELECT created_at FROM php_music.songs where id=14))>30 
-// order by number_listen desc;

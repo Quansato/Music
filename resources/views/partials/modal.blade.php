@@ -137,7 +137,7 @@
                             <div class="save_input_group">
                                 <input type="password" placeholder="Mật khẩu" name="password" class="form-control">
                             </div>
-                            <button type="submit" style="border:none" class="login ms_btn">Đăng nhập</button>
+                            <button type="submit"  class="login ms_btn">Đăng nhập</button>
                         </div>
                         <div class="ms_dnt_have">
                             <p>Bạn chưa có tài khoản? <a href="#myModal" data-toggle="modal" class="hideCurrentModel">Đăng kí</a></p>
@@ -249,7 +249,7 @@
 </div>
 
 <div class="ms_clear_modal">
-    <div id="err_update" class="modal  centered-modal" role="dialog">
+    <div id="err_updatee" class="modal  centered-modal" role="dialog">
         <div class="modal-dialog">
             <!-- Modal content-->
             <div class="modal-content">

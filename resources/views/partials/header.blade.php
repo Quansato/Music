@@ -30,11 +30,15 @@
         <div class="ms_top_btn">
             @if(Auth::check())
             <a href="#" class="ms_btn dev">upload</a>
+            @if(Auth::user()->img_path==null) 
+            <a href="javascript:;" class="ms_admin_name"><span class="ms_admin_title">Chào {{Auth::user()->name}}</span> <span class="ms_pro_name" style="background-image:url('/storage/user/pic1 (12).jpg') !important;background-repeat: no-repeat, repeat;background-size: cover"></span>
+            @else
             <a href="javascript:;" class="ms_admin_name"><span class="ms_admin_title">Chào {{Auth::user()->name}}</span> <span class="ms_pro_name" style="background-image:url('{{Auth::user()->img_path}}') !important;background-repeat: no-repeat, repeat;background-size: cover"></span>
+            @endif
             </a>
             <ul class="pro_dropdown_menu">
                 <li><a href="{{route('user.index')}}">Trang cá nhân</a></li>
-                <li><a href="#">Hỗ trợ</a></li>
+                <li><a href="#" class="support">Hỗ trợ</a></li>
                 <li><a href="{{route('logout')}}">Đăng xuất</a></li>
             </ul>
             @else
