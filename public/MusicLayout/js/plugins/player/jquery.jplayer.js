@@ -2809,6 +2809,7 @@
 			}
 
 			// Order of these commands is important for Safari (Win) and IE9. Pause then change currentTime.
+			console.log(media.currentTime);
 			media.pause();
 
 			// Setup the Android Fix.

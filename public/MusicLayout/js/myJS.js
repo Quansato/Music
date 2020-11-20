@@ -308,6 +308,7 @@ function setAudio() {
                 $("#jquery_jplayer_1").on($.jPlayer.event.ready + ' ' + $.jPlayer.event.play, function (event) {
                     var current = myPlaylist.current;
                     var playlist = myPlaylist.playlist;
+
                     $.each(playlist, function (index, obj) {
                         if (index == current) {
                             $(".jp-now-playing").html("<div class='jp-track-name'><span class='que_img'><img width='50' height='50' src='" + obj.image + "'></span><div class='que_data'>" + obj.title + " <div class='jp-artist-name'>" + obj.artist + "</div></div></div>");
