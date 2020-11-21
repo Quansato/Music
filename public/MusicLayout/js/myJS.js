@@ -198,7 +198,6 @@ function notice() {
 }
 
 function setFlag() {
-    console.log('test');
     localStorage.setItem('flag', 0)
 }
 
@@ -257,6 +256,10 @@ $(function () {
     $('.support').on('click',setDp)
     $('.add_album_fr').on('click',addAlbum)
     $('.song_play,.play_now,.art_play').on('click',showBar)
+    $('.jp-play').on('click',function(){
+        console.log($("#jquery_jplayer_1").data("jPlayer").status.currentTime);
+    })
+
 });
 
 ///getttt audio

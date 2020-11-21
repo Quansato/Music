@@ -7,6 +7,15 @@
 @endsection
 
 @section('content')
+<div class="ms_loader">
+    <div class="wrap">
+        <img src="{{asset('MusicLayout/images/loader.gif')}}" alt="">
+    </div>
+</div>
+@endsection
+
+
+@section('content')
 
 @include('home.banner')
 

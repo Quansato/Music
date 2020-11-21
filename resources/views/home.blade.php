@@ -6,7 +6,13 @@
 <title>Trang chủ</title>
 @endsection
 
-
+@section('loader')
+<div class="ms_loader">
+    <div class="wrap">
+        <img src="{{asset('MusicLayout/images/loader.gif')}}" alt="">
+    </div>
+</div>
+@endsection
 
 @section('content')
 

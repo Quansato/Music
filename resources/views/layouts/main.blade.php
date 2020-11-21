@@ -28,11 +28,12 @@
 
 <body>
     <!----Loader Start---->
-    <div class="ms_loader">
+    <!-- <div class="ms_loader">
         <div class="wrap">
             <img src="{{asset('MusicLayout/images/loader.gif')}}" alt="">
         </div>
-    </div>
+    </div> -->
+    @yield('loader')
     <div class="ms_main_wrapper">
         @include('partials.sidebar')
         @include('partials.header')
