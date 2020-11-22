@@ -308,6 +308,17 @@ function setAudio() {
                         enableRemoveControls: true
                     }
                 });
+                //update time
+                // $("#jquery_jplayer_1").bind($.jPlayer.event.timeupdate, function(event) { 
+                //     var currentTime = Math.floor(event.jPlayer.status.currentTime)
+                //     var current = myPlaylist.current;
+                //     var playlist = myPlaylist.playlist;
+                //     if (currentTime == 5){
+                //         console.log('success'); 
+                //         console.log(playlist[current].id);
+                //     }
+                // });
+
                 $("#jquery_jplayer_1").on($.jPlayer.event.ready + ' ' + $.jPlayer.event.play, function (event) {
                     var current = myPlaylist.current;
                     var playlist = myPlaylist.playlist;
@@ -403,9 +414,11 @@ function setAudio() {
                         myPlaylist.play(playlistId);
                         console.log(playlistId);
                     });
-
                 });
             }
         }
     })
 }
+
+
+// + ' ' + $.jPlayer.event.timeupdate

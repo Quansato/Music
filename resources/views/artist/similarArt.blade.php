@@ -1,7 +1,7 @@
 <div class="ms_content_wrapper ms_artist_content">
             <div class="ms_featured_slider">
                 <div class="ms_heading">
-                    <h1>Ca sĩ tương tự</h1>
+                    <h1>Đề xuất</h1>
                     <span class="veiw_all"><a href="#">Xem thêm</a></span>
                 </div>
                 <div class="ms_relative_inner">
