@@ -60,5 +60,3 @@
         </div>
     </div>
 </div>
-
-<div class="zalo-share-button" data-href="" data-oaid="579745863508352884" data-layout="2" data-color="blue" data-customize=false></div>
